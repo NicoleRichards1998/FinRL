@@ -105,7 +105,7 @@ class DRLAgent:
         return model
 
     @staticmethod
-    def DRL_prediction(model, environment, deterministic=False):
+    def DRL_prediction(model, environment, deterministic=True):
         test_env, test_obs = environment.get_sb_env()
         """make a prediction"""
         account_memory = []
@@ -125,7 +125,7 @@ class DRLAgent:
         return account_memory[0], actions_memory[0]
 
     @staticmethod
-    def DRL_prediction_load_from_file(model_name, environment, cwd, deterministic=False):
+    def DRL_prediction_load_from_file(model_name, environment, cwd, deterministic=True):
         if model_name not in MODELS:
             raise NotImplementedError("NotImplementedError")
         try:
@@ -211,12 +211,18 @@ class DRLEnsembleAgent:
         df_total_value = pd.read_csv(
             f"results/account_value_validation_{model_name}_{iteration}.csv"
         )
-        return (
-                (4 ** 0.5)
-                * df_total_value["daily_return"].mean()
-                / df_total_value["daily_return"].std()
-        )
-
+        # If the agent did not make any transaction 
+        if df_total_value["daily_return"].var()==0:
+            if df_total_value["daily_return"].mean()>0:
+                return (np.inf)
+            else:
+                return (0.0)
+        else:
+            return (
+                    (4 ** 0.5)
+                    * df_total_value["daily_return"].mean()
+                    / df_total_value["daily_return"].std()
+            )
     def __init__(
             self,
             df,
