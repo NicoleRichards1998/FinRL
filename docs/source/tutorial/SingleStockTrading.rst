@@ -1,32 +1,25 @@
 :github_url: https://github.com/AI4Finance-LLC/FinRL-Library
 
-Tutorial for Single Stock Trading
-===================================
+Single Stock Trading
+============================
 
-**Our paper**: 
-`FinRL: A Deep Reinforcement Learning Library for Automated Stock Trading in Quantitative Finance`_. 
+Deep Reinforcement Learning for Stock Trading from Scratch: Single Stock Trading
 
-.. _FinRL\: A Deep Reinforcement Learning Library for Automated Stock Trading in Quantitative Finance: https://arxiv.org/abs/2011.09607
-
-Presented at NeurIPS 2020: Deep RL Workshop.
-
-The Jupyter notebook codes are available on our Github_ and `Google Colab`_.
-
-.. _Github: https://github.com/AI4Finance-LLC/FinRL-Library
-.. _Google Colab: https://colab.research.google.com/github/AI4Finance-LLC/FinRL-Library/blob/master/FinRL_single_stock_trading.ipynb
 
 .. tip::
 
-    - FinRL `Single Stock Trading`_ at Google Colab.
+    Run the code step by step at `Google Colab`_.
     
-    .. _Single Stock Trading: https://colab.research.google.com/github/AI4Finance-LLC/FinRL-Library/blob/master/FinRL_single_stock_trading.ipynb
-    
-    - FinRL `Multiple Stocks Trading`_ at Google Colab: 
+    .. _Google Colab: https://colab.research.google.com/github/AI4Finance-LLC/FinRL-Library/blob/master/examples/old/DRL_single_stock_trading.ipynb
 
-    .. _Multiple Stocks Trading: https://colab.research.google.com/github/AI4Finance-LLC/FinRL-Library/blob/master/FinRL_multiple_stock_trading.ipynb
 
-Overview
--------------
+
+
+
+Step 1: Preparation
+---------------------------------------
+
+**Step 1.1: Overview**
 
 As deep reinforcement learning (DRL) has been recognized as an effective approach in quantitative finance, getting hands-on experiences is attractive to beginners. However, to train a practical DRL trading agent that decides where to trade, at what price, and what quantity involves error-prone and arduous development and debugging.
 
@@ -46,9 +39,8 @@ We use Apple Inc. stock: AAPL as an example throughout this article, because it 
 
 .. image:: ../image/FinRL-Architecture.png
 
+**Step 1.2: Problem Definition**
 
-Problem Definition
---------------------------
 
 This problem is to design an automated trading solution for single stock trading. We model the stock trading process as a Markov Decision Process (MDP). We then formulate our trading goal as a maximization problem.
 
@@ -66,23 +58,21 @@ The components of the reinforcement learning environment are:
 The data of the single stock that we will be using for this case study is obtained from Yahoo Finance API. The data contains Open-High-Low-Close price and volume.
 
 
-
-Load Python Packages
---------------------------
-
-Install the unstable development version of FinRL:
-
-.. code-block:: python
-   :linenos:
-
-    #Install the unstable development version in Jupyter notebook
-    !pip install git+https://github.com/AI4Finance-LLC/FinRL-Library.git
+**Step 1.3: Python Package Installation**
 
 
-Install individual packages in Jupyter notebook if missing:
+As a first step we check if the additional packages needed are present, if not install them.
 
-.. code-block:: python
-   :linenos:
+    - Yahoo Finance API
+    - pandas
+    - matplotlib
+    - stockstats
+    - OpenAI gym
+    - stable-baselines
+    - tensorflow
+
+.. code-block::
+    :linenos:
 
     import pkg_resources
     import pip
@@ -97,33 +87,29 @@ Install individual packages in Jupyter notebook if missing:
         !pip install gym
         !pip install stable-baselines[mpi]
         !pip install tensorflow==1.15.4
-    
-Import Packages:
+
+**Step 1.4: Import packages**
 
 .. code-block:: python
-   :linenos:
-
-    # import packages
+    :linenos:
+    
+    import yfinance as yf
+    from stockstats import StockDataFrame as Sdf
+    
     import pandas as pd
-    import numpy as np
-    import matplotlib
     import matplotlib.pyplot as plt
-    matplotlib.use('Agg')
-    import datetime
-    from finrl.config import config
-    from finrl.marketdata.yahoodownloader import YahooDownloader
-    from finrl.preprocessing.preprocessors import FeatureEngineer
-    from finrl.preprocessing.data import data_split
-    from finrl.env.environment import EnvSetup
-    from finrl.env.EnvMultipleStock_train import StockEnvTrain
-    from finrl.env.EnvMultipleStock_trade import StockEnvTrade
-    from finrl.model.models import DRLAgent
-    from finrl.trade.backtest import BackTestStats, BaselineStats, BackTestPlot
+    
+    import gym
+    from stable_baselines import PPO2, DDPG, A2C, ACKTR, TD3
+    from stable_baselines import DDPG
+    from stable_baselines import A2C
+    from stable_baselines import SAC
+    from stable_baselines.common.vec_env import DummyVecEnv
+    from stable_baselines.common.policies import MlpPolicy
     
     
-
-Download Data
---------------------------
+Step 2: Download Data
+---------------------------------------
 
 `Yahoo Finance`_ is a website that provides stock data, financial news, financial reports, etc. All the data provided by Yahoo Finance is free. 
 
@@ -181,8 +167,8 @@ Download and save the data in a pandas DataFrame:
 
 
 
-Preprocess Data
---------------------------
+Step 3: Preprocess Data
+---------------------------------------
 
 Data preprocessing is a crucial step for training a high quality machine learning model. We need to check for missing data and do feature engineering in order to convert the data into a model-ready state.
 
@@ -190,7 +176,7 @@ Data preprocessing is a crucial step for training a high quality machine learnin
     
     - Add technical indicators. In practical trading, various information needs to be taken into account, for example the historical stock prices, current holding shares, technical indicators, etc.
 
-**Calculate technical indicators**:
+**Calculate technical indicators**
 
 In practical trading, various information needs to be taken into account, for example the historical stock prices, current holding shares, technical indicators, etc.
 
@@ -245,8 +231,8 @@ Perform Feature Engineering:
 
 
 
-Build Environment
---------------------------
+Step 4: Build Environment
+---------------------------------------
 
 Considering the stochastic and interactive nature of the automated stock trading tasks, a financial task is modeled as a Markov Decision Process (MDP) problem. The training process involves observing stock price change, taking an action and reward’s calculation to have the agent adjusting its strategy accordingly. By interacting with the environment, the trading agent will derive a trading strategy with the maximized rewards as time proceeds.
 
@@ -369,8 +355,9 @@ FinRL provides blueprint for `single stock trading environment`_.
 Tutorial for how to design a customized trading environment will be pulished in the future soon.
 
 
-Implement DRL Algorithms
---------------------------
+
+Step 5: Implement DRL Algorithms
+---------------------------------------
 
 The implementation of the DRL algorithms are based on `OpenAI Baselines`_ and Stable Baselines. `Stable Baselines`_ is a fork of OpenAI Baselines, with a major structural refactoring, and code cleanups.
 
@@ -408,7 +395,10 @@ FinRL uses a DRLAgent class to implement the algorithms.
                 make a prediction in a test dataset and get results
         """
 
-**Model Training**:
+
+
+Step 6: Model Training
+---------------------------------------
 
 We use 5 DRL models in this article, namely PPO, A2C, DDPG, SAC and TD3. I introduced these models in the previous article. TD3 is an improvement over DDPG.
 
@@ -445,13 +435,89 @@ actor_loss for DDPG and policy_loss for TD3:
 .. image:: ../image/single_4.png
 
 
-**Picking models**:
+**Picking models**
 
 We pick the TD3 model, because it converges pretty fast and it’s a state of the art model over DDPG. By observing the episode_reward chart, TD3 doesn’t need to reach full 100k total_timesteps to converge.
 
-**Trading**:
 
-Assume that we have $100,000 initial capital at 2019/01/01. We use the TD3 model to trade AAPL.
+Four models: PPO A2C, DDPG, TD3
+
+**Model 1: PPO**
+
+.. code-block:: python
+    :linenos:
+    
+    #tensorboard --logdir ./single_stock_tensorboard/
+    env_train = DummyVecEnv([lambda: SingleStockEnv(train)])
+    model_ppo = PPO2('MlpPolicy', env_train, tensorboard_log="./single_stock_trading_2_tensorboard/")
+    model_ppo.learn(total_timesteps=100000,tb_log_name="run_aapl_ppo")
+    #model.save('AAPL_ppo_100k')
+    
+    
+**Model 2: DDPG**
+
+.. code-block:: python
+    :linenos:
+
+    #tensorboard --logdir ./single_stock_tensorboard/
+    env_train = DummyVecEnv([lambda: SingleStockEnv(train)])
+    model_ddpg = DDPG('MlpPolicy', env_train, tensorboard_log="./single_stock_trading_2_tensorboard/")
+    model_ddpg.learn(total_timesteps=100000, tb_log_name="run_aapl_ddpg")
+    #model.save('AAPL_ddpg_50k')
+
+
+
+**Model 3: A2C**
+
+.. code-block:: python
+    :linenos:
+
+    #tensorboard --logdir ./single_stock_tensorboard/
+    env_train = DummyVecEnv([lambda: SingleStockEnv(train)])
+    model_a2c = A2C('MlpPolicy', env_train, tensorboard_log="./single_stock_trading_2_tensorboard/")
+    model_a2c.learn(total_timesteps=100000,tb_log_name="run_aapl_a2c")
+    #model.save('AAPL_a2c_50k')
+    
+
+**Model 4: TD3**
+
+.. code-block:: python
+    :linenos:
+
+    #tensorboard --logdir ./single_stock_tensorboard/
+    #DQN<DDPG<TD3
+    env_train = DummyVecEnv([lambda: SingleStockEnv(train)])
+    model_td3 = TD3('MlpPolicy', env_train, tensorboard_log="./single_stock_trading_2_tensorboard/")
+    model_td3.learn(total_timesteps=100000,tb_log_name="run_aapl_td3")
+    #model.save('AAPL_td3_50k')
+    
+    
+**Testing data**
+
+.. code-block:: python
+    :linenos:
+    
+    test = data_clean[(data_clean.datadate>='2019-01-01') ]
+    # the index needs to start from 0
+    test=test.reset_index(drop=True)
+    
+**Trading**
+
+Assume that we have $100,000 initial capital at 2019-01-01. We use the TD3 model to trade AAPL.
+
+.. code-block:: python
+    :linenos:
+
+    model = model_td3
+    env_test = DummyVecEnv([lambda: SingleStockEnv(test)])
+    obs_test = env_test.reset()
+    print("==============Model Prediction===========")
+    for i in range(len(test.index.unique())):
+        action, _states = model.predict(obs_test)
+        obs_test, rewards, dones, info = env_test.step(action)
+        env_test.render()
+        
+        
 
 .. code-block:: python
    :linenos:
@@ -470,58 +536,37 @@ Assume that we have $100,000 initial capital at 2019/01/01. We use the TD3 model
 .. image:: ../image/single_5.png
 
 
-Backtesting Performance
---------------------------
+Step 7: Backtest Our Strategy
+---------------------------------------
 
 Backtesting plays a key role in evaluating the performance of a trading strategy. Automated backtesting tool is preferred because it reduces the human error. 
-We usually use the `Quantopian pyfolio`_ package to backtest our trading strategies. 
-It is easy to use and consists of various individual plots that provide a comprehensive image of the performance of a trading strategy.
+We usually use the `Quantopian pyfolio`_ package to backtest our trading strategies. It is easy to use and consists of various individual plots that provide a comprehensive image of the performance of a trading strategy.
 
-.. _Quantopian pyfolio: https://github.com/quantopian/pyfolio
-
-FinRL uses a `set of functions`_ to do the backtesting with pyfolio.
-
-.. _set of functions: https://github.com/AI4Finance-LLC/FinRL-Library/blob/master/finrl/trade/backtest.py
+For simplicity purposes, in the article, we just calculate the Sharpe ratio and the annual return manually.
 
 .. code-block:: python
-   :linenos:
+    :linenos:
 
-    # BackTestStats
-    # pass in df_account_value, this information is stored in env class
-    print("==============Get Backtest Results===========")
-    perf_stats_all = BackTestStats(account_value = df_account_value)
-    perf_stats_all = pd.DataFrame(perf_stats_all)
-    perf_stats_all.to_csv("./"+config.RESULTS_DIR+"/perf_stats_all_"+now+'.csv')
+    def get_DRL_sharpe():
+        df_total_value=pd.read_csv('account_value.csv',index_col=0)
+        df_total_value.columns = ['account_value']
+        df_total_value['daily_return']=df_total_value.pct_change(1)
+        sharpe = (252**0.5)*df_total_value['daily_return'].mean()/ \
+        df_total_value['daily_return'].std()
+        
+        annual_return = ((df_total_value['daily_return'].mean()+1)**252-1)*100
+        print("annual return: ", annual_return)
+        print("sharpe ratio: ", sharpe)
+        return df_total_value
+        
     
-    print("==============Get Baseline Stats===========")
-    baesline_perf_stats=BaselineStats('^DJI',
-                                      baseline_start = '2019-01-01',
-                                      baseline_end = '2020-09-30')
+    def get_buy_and_hold_sharpe(test):
+        test['daily_return']=test['adjcp'].pct_change(1)
+        sharpe = (252**0.5)*test['daily_return'].mean()/ \
+        test['daily_return'].std()
+        annual_return = ((test['daily_return'].mean()+1)**252-1)*100
+        print("annual return: ", annual_return)
     
-    # BackTestPlot
-    # pass the account value memory into the backtest functions
-    # and select a baseline ticker
-    print("==============Compare to DJIA===========")
-    %matplotlib inline
-    # S&P 500: ^GSPC
-    # Dow Jones Index: ^DJI
-    # NASDAQ 100: ^NDX
-    BackTestPlot(df_account_value, 
-                 baseline_ticker = '^DJI', 
-                 baseline_start = '2019-01-01',
-                 baseline_end = '2020-09-30')
-                 
-                 
-**Plots**:
-
-.. image:: ../image/single_6.0.png
-    :scale: 60 %
-.. image:: ../image/single_6.png
-
-.. image:: ../image/single_7.png
-
-
-
-
-
-
+        print("sharpe ratio: ", sharpe)
+        #return sharpe
+        

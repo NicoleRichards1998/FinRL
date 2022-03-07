@@ -60,17 +60,16 @@ Feel free to leave us feedback: report bugs using `Github issues`_ or discuss Fi
    :maxdepth: 1
    :caption: Tutorials
    
-   tutorial/finrl_single_stock
-   tutorial/finrl_multiple_stock
-   tutorial/finrl_portfolio_allocation
+   tutorial/SingleStockTrading
+   tutorial/MultipleStockTrading
+   tutorial/PortfolioAllocation
    
 
 .. toctree::
    :maxdepth: 1
    :caption: Examples
    
-   examples/SingleStockTrading
-   examples/MultipleStockTrading
+
    examples/ExplainableFinRLAnEmpiricalApproach
    
 

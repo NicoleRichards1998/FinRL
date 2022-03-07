@@ -1,6 +1,6 @@
 :github_url: https://github.com/AI4Finance-LLC/FinRL-Library
 
-Tutorial for Portfolio Allocation
+Portfolio Allocation
 ===================================
 
 **Our paper**: 
@@ -25,10 +25,7 @@ The Jupyter notebook codes are available on our Github_ and `Google Colab`_.
 
     .. _Multiple Stocks Trading: https://colab.research.google.com/github/AI4Finance-LLC/FinRL-Library/blob/master/FinRL_multiple_stock_trading.ipynb
     
-Check our previous tutorials: `Tutorial for Single Stock Trading`_ and `Tutorial for Multiple Stock Trading`_ for detailed explanation of the FinRL architecture and modules.
-
-.. _Tutorial for Single Stock Trading: finrl_single_stock.rst
-.. _Tutorial for Multiple Stock Trading: finrl_multiple_stock.rst
+Check our previous tutorials: `Single Stock Trading <https://finrl.readthedocs.io/en/latest/tutorial/SingleStockTrading.html>`_ and `Multiple Stock Trading <https://finrl.readthedocs.io/en/latest/tutorial/MultipleStockTrading.html>`_ for detailed explanation of the FinRL architecture and modules.
 
 
 
@@ -56,7 +53,6 @@ We introduce a DRL library FinRL that facilitates beginners to expose themselves
 
 This article is focusing on one of the use cases in our paper: Portfolio Allocation. We use one Jupyter notebook to include all the necessary steps.
 
-.. image:: ../image/FinRL-Architecture.png
 
 
 
@@ -494,7 +490,6 @@ User-defined Environment: a simulation environment class.The environment for por
 Implement DRL Algorithms
 --------------------------
 
-.. image:: ../image/alg_compare.png
 
 FinRL uses a DRLAgent class to implement the algorithms.
 
@@ -583,15 +578,10 @@ FinRL uses a set of functions to do the backtesting with Quantopian pyfolio.
                                            
 The left table is the stats for backtesting performance, the right table is the stats for Index (DJIA) performance.
 
-.. image:: ../image/portfolio_allocation_6.png
+
                  
 **Plots**:
 
-.. image:: ../image/portfolio_allocation_7.png
-    :scale: 60 %
-.. image:: ../image/portfolio_allocation_8.png
-
-.. image:: ../image/portfolio_allocation_9.png
 
 
 
