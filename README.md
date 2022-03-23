@@ -32,10 +32,10 @@ The FinRL ecosystem is a unified framework, including various markets, state-of-
 
 | Roadmap  | Level | Users | Example | Desription | 
 |----|----|----|----|----|
-| 0.0 (prepartion) | prepartion | practitioners of financial machine learning | [FinRL-Meta](https://github.com/AI4Finance-Foundation/FinRL-Metaverse)| a universe of market environments|
-| 1.0 (Proof-of-Concept)| entry-level | entry-level | [this repo](https://github.com/AI4Finance-Foundation/FinRL) | demonstration, education |
-| 2.0 (Professional) | intermediate-level  | full-stack developers, professionals | [ElegantRL](https://github.com/AI4Finance-Foundation/ElegantRL) | finance-oriented DRL algorithms |
-| 3.0 (Production) | advanced-level | investment banks, hedge funds | [Podracer](https://github.com/AI4Finance-Foundation/FinRL_Podracer) | cloud-native solution |
+| 0.0 (Preparation) | preparation | practitioners of financial big data | [FinRL-Meta](https://github.com/AI4Finance-Foundation/FinRL-Metaverse)| a universe of market environments|
+| 1.0 (Proof-of-Concept)| entry-level | beginners | [this repo](https://github.com/AI4Finance-Foundation/FinRL) | demonstration, education |
+| 2.0 (Professional) | intermediate-level  | full-stack developers, professionals | [ElegantRL](https://github.com/AI4Finance-Foundation/ElegantRL) | financially optimized DRL algorithms |
+| 3.0 (Production) | advance-level | investment banks, hedge funds | [Podracer](https://github.com/AI4Finance-Foundation/FinRL_Podracer) | cloud-native solution |
 
 
 ## Outline
@@ -78,13 +78,13 @@ We employ a **train-test-trade** pipeline by three files: train.py, test.py, and
 ```
 FinRL
 ├── finrl (main folder)
-│   ├── apps
+│   ├── applications
 │   	├── cryptocurrency_trading
 │   	├── high_frequency_trading
 │   	├── portfolio_allocation
 │   	├── stock_trading
-│   	└── config.py
-│   ├── drl_agents
+│   	└── 
+│   ├── agents
 │   	├── elegantrl
 │   	├── rllib
 │   	└── stablebaseline3
@@ -96,19 +96,20 @@ FinRL
 │   	├── preprocessor
 │   	├── data_processor.py
 │   	└── finrl_meta_config.py
+│   ├── config.py
+│   ├── config_tickers.py
+│   ├── main.py
+│   ├── plot.py
 │   ├── train.py
 │   ├── test.py
-│   ├── trade.py
-│   └── plot.py
+│   └── trade.py
+│   
 ├── tutorial (tutorial notebooks and educational files)
 ├── unit_testing (make sure verified codes working on env & data)
 │   ├── test_env
 │   	└── test_env_cashpenalty.py
 │   └── test_marketdata
 │   	└── test_yahoodownload.py
-├── RL_stock.py
-├── main.py
-├── setup.cfg
 ├── setup.py
 ├── requirements.txt
 └── README.md
@@ -127,10 +128,10 @@ FinRL
 |[QuantConnect](https://www.quantconnect.com/docs/home/home)| US Securities| 1998-now, 1s| NA| OHLCV| Prices&Indicators|
 |[RiceQuant](https://www.ricequant.com/doc/rqdata/python/)| CN Securities| 2005-now, 1ms| Account-specific| OHLCV| Prices&Indicators|
 |[tusharepro](https://tushare.pro/document/1?doc_id=131)| CN Securities, A share| -now, 1 min| Account-specific| OHLCV| Prices&Indicators|
-|[WRDS.TAQ](https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/nyse-trade-and-quote-taq/)| US Securities| 2003-now, 1ms| 5 requests each time| Intraday Trades|Prices&Indicators|
-|[Yahoo! Finance](https://pypi.org/project/yfinance/)| US Securities| Frequency-specific, 1min| 2,000/hour| OHLCV | Prices&Indicators|
+|[WRDS](https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/nyse-trade-and-quote-taq/)| US Securities| 2003-now, 1ms| 5 requests each time| Intraday Trades|Prices&Indicators|
+|[YahooFinance](https://pypi.org/project/yfinance/)| US Securities| Frequency-specific, 1min| 2,000/hour| OHLCV | Prices&Indicators|
 
-OHLCV: open, high, low, and close prices; volume.   adj_close: adjusted close price
+OHLCV: open, high, low, and close prices; volume.   adjusted_close: adjusted close price
 
 Technical indicators: 'macd', 'boll_ub', 'boll_lb', 'rsi_30', 'dx_30', 'close_30_sma', 'close_60_sma'.  Users also can add new features. 
 

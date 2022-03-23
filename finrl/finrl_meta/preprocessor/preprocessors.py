@@ -2,7 +2,7 @@ import datetime
 
 import numpy as np
 import pandas as pd
-from finrl.apps import config
+from finrl import config
 from finrl.finrl_meta.preprocessor.yahoodownloader import YahooDownloader
 from stockstats import StockDataFrame as Sdf
 
@@ -59,7 +59,7 @@ class FeatureEngineer:
     def __init__(
         self,
         use_technical_indicator=True,
-        tech_indicator_list=config.TECHNICAL_INDICATORS_LIST,
+        tech_indicator_list=config.INDICATORS,
         use_vix=False,
         use_turbulence=False,
         user_defined_feature=False,
