@@ -22,6 +22,10 @@
 </div>
 
 
+"*I visualise a time when we will be to robots what dogs are to humans, and I’m rooting for the machines*."   — Claude Shannon
+
+"*We can only see a short distance ahead, but we can see plenty there that needs to be done."*   -Alan Turing
+
 **Our Mission**: to efficiently automate trading. We continuously develop and share codes for finance. 
 
 **Our Vision**: AI community has accumulated an open-source code ocean over the past decade. Applying these intellectual and engineering properties to finance will initiate a paradigm shift from the conventional trading routine to an automated machine learning approach, even **RLOps in finance**. 
@@ -69,6 +73,12 @@ Run [FinRL_StockTrading_NeurIPS_2018.ipynb](https://github.com/AI4Finance-Founda
 
 A video about [FinRL library](http://www.youtube.com/watch?v=ZSGJjtM-5jA) at the [AI4Finance Youtube Channel](https://www.youtube.com/channel/UCrVri6k3KPBa3NhapVV4K5g).
 
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=AI4Finance-Foundation/FinRL&type=Date)](https://star-history.com/#AI4Finance-Foundation/FinRL&Date)
+
+
 ## File Structure
 
 Correspondingly, the main folder **finrl** has three subfolders **apps, drl_agents, finrl_meta**. 
@@ -82,8 +92,7 @@ FinRL
 │   	├── cryptocurrency_trading
 │   	├── high_frequency_trading
 │   	├── portfolio_allocation
-│   	├── stock_trading
-│   	└── 
+│   	└── stock_trading
 │   ├── agents
 │   	├── elegantrl
 │   	├── rllib
@@ -127,7 +136,7 @@ FinRL
 |[JoinQuant](https://www.joinquant.com/)| CN Securities| 2005-now, 1min| 3 requests each time| OHLCV| Prices&Indicators|
 |[QuantConnect](https://www.quantconnect.com/docs/home/home)| US Securities| 1998-now, 1s| NA| OHLCV| Prices&Indicators|
 |[RiceQuant](https://www.ricequant.com/doc/rqdata/python/)| CN Securities| 2005-now, 1ms| Account-specific| OHLCV| Prices&Indicators|
-|[tusharepro](https://tushare.pro/document/1?doc_id=131)| CN Securities, A share| -now, 1 min| Account-specific| OHLCV| Prices&Indicators|
+|[Tushare](https://tushare.pro/document/1?doc_id=131)| CN Securities, A share| -now, 1 min| Account-specific| OHLCV| Prices&Indicators|
 |[WRDS](https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/nyse-trade-and-quote-taq/)| US Securities| 2003-now, 1ms| 5 requests each time| Intraday Trades|Prices&Indicators|
 |[YahooFinance](https://pypi.org/project/yfinance/)| US Securities| Frequency-specific, 1min| 2,000/hour| OHLCV | Prices&Indicators|
 

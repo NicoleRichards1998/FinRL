@@ -6,7 +6,7 @@ import pandas as pd
 from gym import spaces
 from gym.utils import seeding
 from stable_baselines3.common.vec_env import DummyVecEnv
-
+from typing import List
 matplotlib.use("Agg")
 
 # from stable_baselines3.common.logger import Logger, KVWriter, CSVOutputFormat
@@ -19,20 +19,20 @@ class StockTradingEnv(gym.Env):
 
     def __init__(
         self,
-        df,
-        stock_dim,
-        hmax,
-        initial_list,
-        # initial_amount,
-        buy_cost_pct,
-        sell_cost_pct,
-        reward_scaling,
-        state_space,
-        action_space,
-        tech_indicator_list,
+        df: pd.DataFrame,
+        stock_dim: int,
+        hmax: int,
+        initial_amount: int,
+        num_stock_shares: List[int],
+        buy_cost_pct: List[float],
+        sell_cost_pct: List[float],
+        reward_scaling: float,
+        state_space: int,
+        action_space: int,
+        tech_indicator_list: List[str],
         turbulence_threshold=None,
         risk_indicator_col="turbulence",
-        make_plots=False,
+        make_plots: bool =False,
         print_verbosity=10,
         day=0,
         initial=True,
@@ -45,8 +45,8 @@ class StockTradingEnv(gym.Env):
         self.df = df
         self.stock_dim = stock_dim
         self.hmax = hmax
-        self.initial_list=initial_list
-        self.initial_amount = initial_list[0] # get the initial cash
+        self.num_stock_shares=num_stock_shares
+        self.initial_amount = initial_amount # get the initial cash
         self.buy_cost_pct = buy_cost_pct
         self.sell_cost_pct = sell_cost_pct
         self.reward_scaling = reward_scaling
@@ -78,7 +78,7 @@ class StockTradingEnv(gym.Env):
         self.trades = 0
         self.episode = 0
         # memorize all the total balance change
-        self.asset_memory = [self.initial_amount+np.sum(np.array(self.initial_list[1:])*np.array(self.state[1:1+self.stock_dim]))] # the initial total asset is calculated by cash + sum (num_share_stock_i * price_stock_i)
+        self.asset_memory = [self.initial_amount+np.sum(np.array(self.num_stock_shares)*np.array(self.state[1:1+self.stock_dim]))] # the initial total asset is calculated by cash + sum (num_share_stock_i * price_stock_i)
         self.rewards_memory = []
         self.actions_memory = []
         self.state_memory=[] # we need sometimes to preserve the state in the middle of trading process 
@@ -333,7 +333,7 @@ class StockTradingEnv(gym.Env):
         self.state = self._initiate_state()
 
         if self.initial:
-            self.asset_memory = [self.initial_amount+np.sum(np.array(self.initial_list[1:])*np.array(self.state[1:1+self.stock_dim]))]
+            self.asset_memory = [self.initial_amount+np.sum(np.array(self.num_stock_shares)*np.array(self.state[1:1+self.stock_dim]))]
         else:
             previous_total_asset = self.previous_state[0] + sum(
                 np.array(self.state[1 : (self.stock_dim + 1)])
@@ -369,7 +369,7 @@ class StockTradingEnv(gym.Env):
                 state = (
                     [self.initial_amount]
                     + self.data.close.values.tolist()
-                    + self.initial_list[1:]
+                    + self.num_stock_shares
                     + sum(
                         [
                             self.data[tech].values.tolist()

@@ -12,7 +12,7 @@ Welcome to FinRL Library!
    :description: FinRL Library is an open source framework that facilitates beginners to expose themselves to quantitative finance and to develop their own stock trading strategies using deep reinforcement learning, it collects the most practical reinforcement learning algorithms, frameworks and applications(DQN, DDPG, PPO, SAC, A2C, TD3, etc.).
    :keywords: finance ai, openai, artificial intelligence in finance, machine learning, deep reinforcement learning, DRL, RL, machine learning neural networks, deep q network, multi agent reinforcement learning
 
-.. image:: image/logo_finrl.jpg
+.. image:: image/logo_transparent_background.png
    :target:  https://github.com/AI4Finance-LLC/FinRL-Library
 
 **Disclaimer: Nothing herein is financial advice, and NOT a recommendation to trade real money. Please use common sense and always first consult a professional before trading or investing.**
@@ -52,22 +52,33 @@ Feel free to leave us feedback: report bugs using `Github issues`_ or discuss Fi
    
    start/introduction
    start/first_glance
+   start/installation
+   start/quick_start
    
 
 .. toctree::
    :maxdepth: 2
-   :caption: User Guide
+   :caption: Architecture
    
-   user/installation
-   user/quick_start
-   user/key_concept
-   user/DRL_in_stock_trading
-   user/tutorials
+   architecture/three_layer
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Turorial
+
+   tutorial/tutorials
    
    
 .. toctree::
    :maxdepth: 1
    :caption: Developer Guide
 
-   developer/structure
-   developer/development_setup
+   developer_guide/file_architecture
+   developer_guide/development_setup
+
+.. toctree::
+   :maxdepth: 2
+   :caption: FAQ
+
+   faq

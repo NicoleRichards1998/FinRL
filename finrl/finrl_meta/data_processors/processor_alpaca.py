@@ -17,7 +17,7 @@ class AlpacaProcessor:
             self.api = api
 
     def download_data(
-        self, ticker_list, start_date, end_date, time_interval
+            self, ticker_list, start_date, end_date, time_interval
     ) -> pd.DataFrame:
 
         self.start = start_date
@@ -33,13 +33,14 @@ class AlpacaProcessor:
             start_time = (date + pd.Timedelta("09:30:00")).isoformat()
             end_time = (date + pd.Timedelta("15:59:00")).isoformat()
             for tic in ticker_list:
-                barset = self.api.get_barset(
-                    [tic], time_interval, start=start_time, end=end_time, limit=500
-                ).df[tic]
+                barset = self.api.get_bars(
+                    tic, time_interval, start=start_time, end=end_time, limit=500
+                ).df
                 barset["tic"] = tic
                 barset = barset.reset_index()
                 data_df = data_df.append(barset)
             print(("Data before ") + end_time + " is successfully fetched")
+            # print(data_df.head())
             date = date + pd.Timedelta(days=1)
             if date.isoformat()[-14:-6] == "01:00:00":
                 date = date - pd.Timedelta("01:00:00")
@@ -47,10 +48,9 @@ class AlpacaProcessor:
                 date = date + pd.Timedelta("01:00:00")
             if date.isoformat()[-14:-6] != "00:00:00":
                 raise ValueError("Timezone Error")
-        """times = data_df['time'].values
-        for i in range(len(times)):
-            times[i] = str(times[i])
-        data_df['time'] = times"""
+
+        data_df['time'] = data_df['timestamp'].apply(lambda x: x.strftime('%Y-%m-%d %H:%M:%S'))
+
         return data_df
 
     def clean_data(self, df):
@@ -270,7 +270,7 @@ class AlpacaProcessor:
 
         data_df = pd.DataFrame()
         for tic in ticker_list:
-            barset = self.api.get_barset([tic], time_interval, limit=limit).df[tic]
+            barset = self.api.get_bars([tic], time_interval, limit=limit).df[tic]
             barset["tic"] = tic
             barset = barset.reset_index()
             data_df = data_df.append(barset)
@@ -342,6 +342,6 @@ class AlpacaProcessor:
         )
         latest_price = price_array[-1]
         latest_tech = tech_array[-1]
-        turb_df = self.api.get_barset(["VIXY"], time_interval, limit=1).df["VIXY"]
+        turb_df = self.api.get_bars(["VIXY"], time_interval, limit=1).df["VIXY"]
         latest_turb = turb_df["close"].values
         return latest_price, latest_tech, latest_turb
