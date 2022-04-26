@@ -15,7 +15,7 @@ Description
 
 This document contains the most frequently asked questions related to the FinRL Library, based on questions posted on the slack channels and Github_ issues.
 
-.. _Github: https://github.com/AI4Finance-LLC/FinRL-Library
+.. _Github: https://github.com/AI4Finance-Foundation/FinRL
 
 
 Outline
@@ -53,9 +53,9 @@ Section 1  Where to start?
 
     - Read the paper that describes the FinRL library: Liu, X.Y., Yang, H., Chen, Q., Zhang, R., Yang, L., Xiao, B. and Wang, C.D., 2020. FinRL: A Deep Reinforcement Learning Library for Automated Stock Trading in Quantitative Finance. Deep RL Workshop, NeurIPS 2020. https://arxiv.org/abs/2011.09607
 
-    - Read the post related to the type of environment you want to work on (multi stock trading, portfolio optimization) https://github.com/AI4Finance-LLC/FinRL-Library, Section "News"
+    - Read the post related to the type of environment you want to work on (multi stock trading, portfolio optimization) https://github.com/AI4Finance-Foundation/FinRL, Section "News"
 
-    - Install the library following the instructions at the official Github repo: https://github.com/AI4Finance-LLC/FinRL-Library
+    - Install the library following the instructions at the official Github repo: https://github.com/AI4Finance-Foundation/FinRL
 
     - Run the Jupyter notebooks related to the type of environment you want to work on notebooks folder of the library https://github.com/AI4Finance-LLC/FinRL-Library/tree/master/notebooks
 
@@ -219,7 +219,7 @@ Subsection 3.4 Miscellaneous
 
 .. _Section-4:
 
-Section 4 References for diving deep into Deep Reinforcement Learning (DRL)
+Section 4 References for diving deep into DRL
 ==========================================================================================
 
 .. _Section-4-1:
@@ -298,4 +298,4 @@ Subsection 4.3 Challenges of DataOps and MLOps
 Section 5  Common issues/bugs
 ====================================
 - Package trading_calendars reports errors in Windows system:\
-    Trading_calendars is not maintained now. It may report erros in Windows system (python>=3.7). These are two possible solutions: 1.Use python=3.6 environment 2.Replace trading_calendars with exchange_caldenars.
+    Trading_calendars is not maintained now. It may report erros in Windows system (python>=3.7). These are two possible solutions: 1).Use python=3.6 environment. 2).Replace trading_calendars with exchange_caldenars.
