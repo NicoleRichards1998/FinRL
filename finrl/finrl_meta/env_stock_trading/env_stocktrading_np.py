@@ -244,9 +244,9 @@ class DayTradingEnv(gym.Env):
         self.day = 0
         price = self.price_ary[self.day]
 
-        if self.if_train:
+       if self.if_train:
             self.stocks = (
-                self.initial_stocks + rd.randint(0, 32, size=self.initial_stocks.shape)
+                self.initial_stocks + rd.randint(0, 64, size=self.initial_stocks.shape)
             ).astype(np.float32)
             self.stocks_cool_down = np.zeros_like(self.stocks)
             self.amount = (
