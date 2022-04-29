@@ -234,7 +234,7 @@ class DayTradingEnv(gym.Env):
         self.episode_return = 0.0
 
         self.observation_space = gym.spaces.Box(
-            low=-3000000, high=3000000, shape=(self.state_dim,), dtype=np.float32
+            low=-3000, high=3000, shape=(self.state_dim,), dtype=np.float32
         )
         self.action_space = gym.spaces.Box(
             low=-1, high=1, shape=(self.action_dim,), dtype=np.float32
