@@ -18,7 +18,7 @@ For notebook support, you can consider PyCharm Professional Edition.
 
 -On GitHub, fork `ElegantRL <https://github.com/AI4Finance-Foundation/ElegantRL>`_ to your private Github repo.
 
--On GitHub, fork `FinrRL-Meta <https://github.com/AI4Finance-Foundation/FinRL-Meta>`_ to your private Github repo.
+-On GitHub, fork `FinRL-Meta <https://github.com/AI4Finance-Foundation/FinRL-Meta>`_ to your private Github repo.
 
 -All next steps happen on your local machine.
 
@@ -47,6 +47,14 @@ Step 3: Create a Conda Environment
     pip install -r requirements.txt
 
 ElegantRL does not contain a requirements.txt, so open ElegantRL/setup.py in a text editor and pip install anything you can find under 'install_requires'
+.. code-block:: bash
+    "gym"
+    "matplotlib"
+    "numpy"
+    "pybullet"
+    "torch"
+    "opencv-python"
+    "box2d-py"
 
 
 Step 4: Configure a PyCharm Project
