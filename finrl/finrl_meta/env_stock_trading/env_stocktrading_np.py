@@ -501,7 +501,7 @@ class ChangedStockTradingEnv(gym.Env):
           sell_index = False
         else:
           reward = int(0)
-        print('reward', reward)
+        #print('reward', reward)
 
         self.gamma_reward = self.gamma_reward * self.gamma + real_reward
         done = self.day == self.max_step
