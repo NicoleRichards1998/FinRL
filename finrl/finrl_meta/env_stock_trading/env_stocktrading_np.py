@@ -696,12 +696,6 @@ class EndRewardStockTradingEnv(gym.Env):
 
         return sigmoid(ary / thresh) * thresh
 
-    @staticmethod
-    def sigmoid_sign(ary, thresh):
-        def sigmoid(x):
-            return 1 / (1 + np.exp(-x * np.e)) - 0.5
-
-        return sigmoid(ary / thresh) * thresh
     
 class NoIndicatorsStockTradingEnv(gym.Env):
     def __init__(
@@ -868,3 +862,10 @@ class NoIndicatorsStockTradingEnv(gym.Env):
                 self.stocks_cool_down,
             )
         )  # state.astype(np.float32)
+    
+        @staticmethod
+     def sigmoid_sign(ary, thresh):
+        def sigmoid(x):
+            return 1 / (1 + np.exp(-x * np.e)) - 0.5
+
+        return sigmoid(ary / thresh) * thresh
