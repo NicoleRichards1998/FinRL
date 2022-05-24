@@ -4,7 +4,7 @@
 Development setup with PyCharm
 ============================
 
-This setup makes it easy to work on all of AI4Finance-Foundation's repositories simultaneously, while allowing easy debugging, committing to the respective repo's and creating PR's.
+This setup makes it easy to work on all of AI4Finance-Foundation's repositories simultaneously, while allowing easy debugging, committing to the respective repo and creating PRs/MRs.
 
 Step 1: Download Software
 =======
@@ -20,7 +20,7 @@ For notebook support, you can consider PyCharm Professional Edition.
 
 -On GitHub, fork `FinRL-Meta <https://github.com/AI4Finance-Foundation/FinRL-Meta>`_ to your private Github repo.
 
--All next steps happen on your local machine.
+-All next steps happen on your local computer.
 
 Step 2: Git Clone
 =======
@@ -46,7 +46,7 @@ Step 3: Create a Conda Environment
     cd FinRL
     pip install -r requirements.txt
 
-ElegantRL does not contain a requirements.txt, so open ElegantRL/setup.py in a text editor and pip install anything you can find under install_requires: gym, matplotlib, numpy, pybullet, torch, opencv-python, box2d-py
+Install ElegantRL using requirements.txt, or open ElegantRL/setup.py in a text editor and pip install anything you can find: gym, matplotlib, numpy, pybullet, torch, opencv-python, and box2d-py.
 
 
 Step 4: Configure a PyCharm Project
@@ -84,13 +84,13 @@ where branch_xxx is a new branch name. In this branch, we revised config.py.
 Step 5: Creating Commits and PRs/MRs
 =======
 
--Create your commits as you usually do through PyCharm.
+-Create commits as you usually do through PyCharm.
 
--Make sure each commit covers only 1 of the 3 repo's. Don't create a commit that spans more than two repos, e.g., FinRL and ElegantRL.
+-Make sure that each commit covers only 1 of the 3 repo's. Don't create a commit that spans more than one repo, e.g., FinRL and ElegantRL.
 
 .. image:: ../image/pycharm_push_PR.png
 
--When you do a Git Push, PyCharm will ask you to which of the 3 repo's you want to push. Just like the above figure, we selected the repo "FinRL". 
+-When you do a Git Push, PyCharm will ask you to which of the 3 repos you want to push. Just like the above figure, we select the repo "FinRL". 
 
 
 With respect to creating a pull request (PR) or merge quest (MR), please refer to `Create a PR <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request>`_ or `Opensource Create a PR <https://opensource.com/article/19/7/create-pull-request-github>`_.
