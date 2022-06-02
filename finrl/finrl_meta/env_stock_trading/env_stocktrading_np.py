@@ -696,14 +696,10 @@ class EndRewardStockTradingEnv(gym.Env):
                 self.tech_ary[self.day],
             )
         )  # state.astype(np.float32)
-
+    
     @staticmethod
     def sigmoid_sign(ary, thresh):
         def sigmoid(x):
             return 1 / (1 + np.exp(-x * np.e)) - 0.5
 
         return sigmoid(ary / thresh) * thresh
-
- 
-            )
-        )  # state.astype(np.float32)
