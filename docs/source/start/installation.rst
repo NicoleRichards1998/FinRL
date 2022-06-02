@@ -32,7 +32,7 @@ It means that you still use the default python path, you either fix it and pin i
 Step 2: Install `Homebrew <https://brew.sh/>`_
 ---------------------------------------------------------------------
 
--Open a terminal and make sure that you have Anaconda.
+-Open a terminal and make sure that you have installed Anaconda.
 
 -Install Homebrew:
 
@@ -103,7 +103,7 @@ Since we are still actively updating the FinRL repository, please install the un
 Step 4: Run `FinRL <https://github.com/AI4Finance-Foundation/FinRL>`_
 --------------------------------------------------------------------------
 
-Download the FinRL repository using terminal:
+Download the FinRL repository in terminal:
 
 .. code-block:: bash
 
@@ -117,7 +117,7 @@ Windows 10
 ======================
 Prepare for install
 --------------------------------------------------------------------------
-1. VPN is needed in china for github pull code if using Yahoo data source (pyfolio, elegantRL pip dependencies need pull code, Yahoo has stopped the service in china)
+1. VPN is needed if using YahooFinance in china (pyfolio, elegantRL pip dependencies need pull code, YahooFinance has stopped the service in china). Othewise, please ignore it. 
 2. python version >=3.7
 3. pip remove zipline, if your system has installed zipline, zipline has conflicts with the FinRL.
 
@@ -134,7 +134,7 @@ Step2: install dependencies
     cd FinRL
     pip install .
 
-Step3:  test (If using Yahoo API datasource in China, VPN is needed)
+Step3:  test (If using YahooFinance in China, VPN is needed)
 -------------------------------------------------------------------------------------
 .. code-block:: bash
 
@@ -148,7 +148,7 @@ If the following outputs appear, take it easy, since installation is still succe
 1. UserWarning: Module "zipline.assets" not found; multipliers will not be applied to position notionals. Module "zipline.assets" not found; multipliers will not be applied'
 
 
-If following outputs appear, please ensure that VPN helps to access the Yahooo API
+If following outputs appear, please ensure that VPN helps to access the YahooFinance
 
 1. Failed download: xxxx: No data found for this date range, the stock may be delisted, or the value is missing.
 
@@ -190,7 +190,7 @@ Since we are still actively updating the FinRL repository, please install the un
 Step 5: Run `FinRL <https://github.com/AI4Finance-Foundation/FinRL>`_
 --------------------------------------------------------------------------
 
-Download the FinRL repository using terminal:
+Download the FinRL repository in terminal:
 
 .. code-block:: bash
 

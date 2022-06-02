@@ -27,7 +27,7 @@ Reinforcement learning (RL) trains an agent to solve tasks by trial and error, w
 
 .. _FinRL Library: https://github.com/AI4Finance-Foundation/FinRL
 
-Join or discuss FinRL: [AI4Finance mailing list](https://groups.google.com/u/1/g/ai4finance)。
+Join or discuss FinRL: `AI4Finance mailing list <https://groups.google.com/u/1/g/ai4finance>`_.
 
 Feel free to leave us feedback: report bugs using `Github issues`_ or discuss FinRL development in the Slack Channel.
 
@@ -61,8 +61,10 @@ Feel free to leave us feedback: report bugs using `Github issues`_ or discuss Fi
    :maxdepth: 1
    :caption: FinRL-Meta
 
+   finrl_meta/background
    finrl_meta/overview
-   finrl_meta/Dataset
+   finrl_meta/Data_layer
+   finrl_meta/Environment_layer
    finrl_meta/Benchmark
 
 
@@ -88,10 +90,10 @@ Feel free to leave us feedback: report bugs using `Github issues`_ or discuss Fi
 
 .. toctree::
    :maxdepth: 1
-   :caption: Scholarly Background
+   :caption: Reference
 
-   scholarly_background/finrl_ecosystem_papers
-   scholarly_background/awesome_ai4finance
+   reference/publication
+   reference/reference.md
 
 
 .. toctree::
