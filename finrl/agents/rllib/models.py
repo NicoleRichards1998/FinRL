@@ -3,9 +3,9 @@ import ray
 from ray.rllib.agents.a3c import a2c
 from ray.rllib.agents.ddpg import ddpg, td3
 from ray.rllib.agents.ppo import ppo
-from ray.rllib.agents.sac import sac
 
-MODELS = {"a2c": a2c, "ddpg": ddpg, "td3": td3, "sac": sac, "ppo": ppo}
+
+MODELS = {"a2c": a2c, "ddpg": ddpg, "td3": td3, "ppo": ppo}
 
 
 # MODEL_KWARGS = {x: config.__dict__[f"{x.upper()}_PARAMS"] for x in MODELS.keys()}
@@ -90,8 +90,7 @@ class DRLAgent:
             trainer = model.DDPGTrainer(env=self.env, config=model_config)
         elif model_name == "td3":
             trainer = model.TD3Trainer(env=self.env, config=model_config)
-        elif model_name == "sac":
-            trainer = model.SACTrainer(env=self.env, config=model_config)
+
 
         for _ in range(total_episodes):
             trainer.train()
@@ -147,8 +146,7 @@ class DRLAgent:
             trainer = MODELS[model_name].DDPGTrainer(env=env, config=model_config)
         elif model_name == "td3":
             trainer = MODELS[model_name].TD3Trainer(env=env, config=model_config)
-        elif model_name == "sac":
-            trainer = MODELS[model_name].SACTrainer(env=env, config=model_config)
+
 
         try:
             trainer.restore(agent_path)
